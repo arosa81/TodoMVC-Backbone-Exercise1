@@ -72,4 +72,48 @@ app.AppView = Backbone.View.extend({
     this.$('#todo-list').html('');
     app.Todos.each(this.addOne, this);
   },
+
+  filterOne: function(todo) {
+    todo.trigger('visible');
+  },
+
+  filterAll: function() {
+    app.Todos.each(this.filterOne, this);
+  },
+
+  // Generate the attributes for a new Todo item.
+  newAttributes: function() {
+    return {
+      title: this.$input.val().trim(),
+      order: app.Todos.nextOrder(),
+      completed: false
+    };
+  },
+
+  // If you hit return in the main input field, create new Todo model,
+  // persisting it to localStorage.
+  createOnEnter: function(event) {
+    if (event.which !== ENTER_KEY || !this.$input.val().trim()) {
+      return;
+    }
+
+    app.Todos.create(this.newAttributes());
+    this.$input.val();
+  },
+
+  // Clear all completed todo items, destroying their models.
+  clearCompleted: function() {
+    _.invoke(app.Todos.completed(), 'destroy');
+    return false;
+  },
+
+  toggleAllComplete: function() {
+    var completed = this.allCheckbox.checked;
+
+    app.Todos.each(function( todo ) {
+      todo.save({
+        'completed': completed
+      });
+    });
+  }
 });
