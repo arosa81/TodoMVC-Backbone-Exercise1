@@ -25,6 +25,8 @@ app.TodoView = Backbone.View.extend({
   render: function() {
     console.log(this.model.attributes);
     this.$el.html(this.template(this.model.attributes));
+    this.$input = this.$('.edit');
+    return this;
   },
 
   // switch view into "editing" mode, displaying input field
