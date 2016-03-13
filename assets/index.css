@@ -142,13 +142,13 @@ label[for='toggle-all'] {
 	color: #737373;
 }
 
-.todo-list {
-	margin: 0;
-	padding: 0;
+ul {
 	list-style: none;
 }
 
-ul {
+.todo-list {
+	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 
