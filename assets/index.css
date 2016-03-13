@@ -83,7 +83,7 @@ input[type="checkbox"] {
 	text-rendering: optimizeLegibility;
 }
 
-.new-todo,
+#new-todo,
 .edit {
 	position: relative;
 	margin: 0;
